@@ -1,0 +1,161 @@
+body {
+	background-image: -webkit-gradient(linear, right top, left top, from(rgba(0,0,0,0)), to(rgba(0,0,0,0))), url("./images/background1.jpg");
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: left top;
+	font-family: Courier;
+	color: #4C4E2F;
+}
+
+.snow-canvas {
+	width: 100vw;
+	height: 100vh;
+	display: block;
+}
+
+h1, h3{
+	text-align: center;
+}
+
+a{
+	cursor: pointer;
+	color: white;
+	text-decoration: none;
+}
+
+a:link{
+	color: #4C4E2F;
+	text-decoration: none;
+}
+
+a:visited{
+	text-decoration: none;
+	color: #4C4E2F;
+}
+
+a:hover{
+	color: lightgray;
+	text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+    color: lightgray;
+}
+
+.text-desc{
+	color: white;
+}
+	.text-desc:hover{
+		color: gray;
+	}
+
+.btn{
+	cursor: pointer;
+	margin: 10px;
+	border-radius: 5px;
+	text-decoration: none;
+	padding: 1em 2em 1em 2em;
+	font-size: 15px;
+	transition: .2s;
+	-webkit-transition: .2s;
+	-moz-transition: .2s;
+	-o-transition: .2s;
+	display: inline-block;
+}
+.btn:hover{
+	background-color: rgba(255,255,255,0.5);
+}
+
+.white-btn {
+  color: white !important;
+  border: 2px white solid;
+}
+
+.white-btn.visited{
+	color: white !important;
+}
+
+.me{
+	background-color: white;
+	width: 100%;
+	padding: 4em 0 4em 0;
+}
+.center{
+	text-align: center;
+}
+
+.white-background{
+	background-color: white;
+	color: #4C4E2F;
+	border-radius: 1px;
+	padding: 1em;
+}
+
+.white{
+	border-radius: 1px;
+	padding: 2em 1em 3em 1em;
+}
+
+li{
+	display: inline-block;
+	padding-left: 0.75em;
+}
+
+.dark-border{
+	border-top: 1px solid #484848;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #4C4E2F;
+}
+
+.footer{
+	background-color: white;
+	text-align: center;
+	padding: 4em 0 10em 0;
+}
+
+.space{
+	margin-top: 5em;
+}
+
+.small-space {
+	margin-top: 2em;
+}
+
+.dark{
+	background-color: rgba(255 255 255 1);
+}
+
+.dark-text{
+	color: #4C4E2F;
+}
+
+.top{
+	margin-bottom: 1em;
+}
+
+.summary{
+	padding: 2em 2em 2em 2em;
+}
+
+.projekt{
+	padding: 2em 2em 2em 2em;
+}
+
+#small-line{
+	width: 50%;
+}
+
+.white-text{
+	color: white;
+}
+
+.lower{
+	margin-top: 10em;
+	background: white;
+}
+
+.icon{
+	color: #4C4E2F;
+}

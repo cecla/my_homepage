@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cecilia Lagerwall</title>
+    <!--Change css depending on local time-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+
+    <script type="text/javascript" src="./js/glMatrix-0.9.5.min.js"></script>
+    <script type="text/javascript" src="./js/webgl-utils.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--FRAGMENT SHADER-->
+    <script id="shader-fs" type="x-shader/x-fragment">
+        precision mediump float;
+
+        varying vec2 vTextureCoord;
+
+        uniform sampler2D uSampler;
+        
+        uniform float smoke;
+
+        uniform vec3 uColor;
+        uniform float uOpacity;
+
+        void main(void){
+            vec4 textureColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
+            if(smoke == 1.0){
+                gl_FragColor =   vec4(uColor, uOpacity);
+            } else {
+                gl_FragColor = textureColor * vec4(uColor, uOpacity);
+            }
+        }
+    </script>
+    <!--VERTEX SHADER-->
+    <script id="shader-vs" type="x-shader/x-vertex">
+        //inputs, vary from vertex to vertex
+        attribute vec3 aVertexPosition;
+        attribute vec2 aTextureCoord;
+        //non-varying uniforms
+        uniform mat4 uMVMatrix;
+        uniform mat4 uPMatrix;
+        //output
+        varying vec2 vTextureCoord;
+
+        void main(void){
+            gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+            //pass to fragment shader
+            vTextureCoord = aTextureCoord;
+        }
+    </script>
+
+    <script type="text/javascript" src="./js/snow.js"></script>
+
+</head>
+<body onload="webGLStartSnow();">
+    <canvas class="snow-canvas" id="gl-snow"></canvas>
+        <row>
+            <div class="me">
+                <div class="container">
+                <div class="col-md-4 hidden-md hidden-lg top">
+                    <img src="./images/cecilia.jpg" class="img-responsive" alt="Cecilia Lagerwall">
+                </div>
+                <div class="col-md-8 white">
+                    <h3>About me.</h3>
+                    <hr class="dark-border" id="small-line">
+                    <p>Currently I am finishing my master studies at Linköping University and cannot wait to get my first real job as a computer scientist. I am born and raised outside Stockholm and I would like to return to a city equal to what Stockholm has to offer. I am living for the pulse, the people and fast and innovative projects. I see myself as a part of an exciting and dynamic team which will be able to tackle all kind off creative challenges!
+                    </br>I want to be able go to a workplace that feels like I am going to a technical playground… EVERY DAY! Cheesy?! Of course, but also true!</p>
+                </div>
+                <div class="col-md-4 hidden-sm hidden-xs">
+                    <img src="./images/cecilia.png" class="img-responsive" alt="Cecilia Lagerwall">
+                </div>
+                <div class="clearfix visible-md-block"></div>
+            </div>
+            </div>
+
+            <div class="container">
+            <div class="white-text">
+                <div class="col-md-12 space">
+                <div class="col-md-12">
+                    <head>
+                        <h1>Projects.</h1>
+                        <div class="col-md-8 col-md-offset-2 center">
+                            <p>Few projects which I have been a part of developing. Click on the headline to get more information about them. Some of them also have a link to GitHub or another site. <i>LiU - Linköping Univeristy and EPFL-École Polytechnique Fédérale de Lausanne</i></p>
+                            <a href="https://github.com/cecla" class="btn white-btn" target="blank">Visit my GitHub</a>
+                        </div>
+                        <div class="col-md-12"><hr id="small-line"></div>
+                    </head>
+                </div>
+               
+                
+
+                <!--projects-->
+                <!--<div class="col-md-9">-->
+                    <div class="col-md-4 small-space">
+                        <a class="text-desc" onclick="showDescription('12')">
+                        <p>Advent Calendar - Web Application</p></a>
+                        <div id="proj-description12"></div>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe src="http://cecilialagerwall.se/julkalendern/" scrolling="yes"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-md-4 small-space">
+                        <a class="text-desc" onclick="showDescription('10')">
+                        <p>Fire simulation - WebGL (LiU)</p></a>
+                        <div id="proj-description10"></div>
+                        <a href="./fire"><img class="img-responsive" src="./images/3d_use.png" alt="solas"></img></a>
+                    </div>
+                    <div class="col-md-4 small-space">
+                        <a class="text-desc" onclick="showDescription('11')">
+                        <p>International Reconsultants - Web Site</p></a>
+                        <div id="proj-description11"></div>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe src="http://internationalreconsultants.com/" scrolling="no"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-md-4 small-space">
+                        <a class="text-desc" onclick="showDescription('1')"><p>Guest book - Interactive solution (LiU)</p></a>
+                        <div id="proj-description1"></div>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video width="400" controls>
+                              <source src="./video/tddd53.mp4" type="video/mp4">
+                              Your browser does not support HTML5 video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="col-md-4 small-space">
+                        <a class="text-desc" onclick="showDescription('2')">
+                        <p>highPRunner - A running app (EPFL)</p></a>
+                        <div id="proj-description2"></div>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video width="400" controls>
+                              <source src="./video/finalDemo.mp4" type="video/mp4">
+                              Your browser does not support HTML5 video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="col-md-4 small-space">
+                        <a class="text-desc" onclick="showDescription('3')">
+                        <p>[just,say,hi] - Film Project (EPFL)</p></a>
+                        <div id="proj-description3"></div>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video width="400" controls>
+                              <source src="./video/theMovie.mp4" type="video/mp4">
+                              Your browser does not support HTML5 video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="col-md-4 small-space">
+                        <a class="text-desc" onclick="showDescription('4')">
+                        <p>WeCan - Health app concept (EPFL)</p></a>
+                        <div id="proj-description4"></div>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video width="400" controls>
+                              <source src="./video/hci_demo4.mp4" type="video/mp4">
+                              Your browser does not support HTML5 video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="col-md-4 small-space">
+                        <a class="text-desc" onclick="showDescription('8')">
+                        <p>Lagerwall Consulting - Web Site</p></a>
+                        <div id="proj-description8"></div>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe src="http://www.lagerwallconsulting.se/" scrolling="no"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-md-4 small-space">
+                        <a class="text-desc" onclick="showDescription('5')">
+                        <p>Medusa - 3D Scanner (LiU)</p></a>
+                        <div id="proj-description5"></div>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video width="400" controls>
+                              <source src="./video/medusa_the_movie.mp4" type="video/mp4">
+                              Your browser does not support HTML5 video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="col-md-4 small-space">
+                        <a class="text-desc" onclick="showDescription('6')">
+                        <p>Quadcopter - Modelling Project (LiU)</p></a>
+                        <div id="proj-description6"></div>
+                        <img class="img-responsive" src="./images/quad.png" alt="quadcopter"></img>
+                    </div>
+                    <div class="col-md-4 small-space">
+                        <a class="text-desc" onclick="showDescription('7')">
+                        <p>Flappa Freqt - Sound Project (LiU)</p></a>
+                        <div id="proj-description7"></div>
+                        <img class="img-responsive" src="./images/flappa.png" alt="flappa freqt"></img>
+                    </div>
+                    <div class="col-md-4 small-space">
+                        <a class="text-desc" onclick="showDescription('9')">
+                        <p>Solas - 3D Project (LiU)</p></a>
+                        <div id="proj-description9"></div>
+                        <img class="img-responsive" src="./images/gubbe.png" alt="solas"></img>
+                    </div>
+                </div><!--END PROJECTS-->
+            </div><!--end white text-->
+        </div><!--END CONTAINER-->
+        </row>
+    </div>
+    <footer class="footer white space">
+        <div class="col-md-12">
+            <p>Check me out, send me a message and be my friend so we can do this journey together!</p>
+        </div>
+        <div class="col-md-12">
+            <a href="https://se.linkedin.com/in/cecilialagerwall" target="blank" class="fa fa-linkedin icon" style="font-size:48px;" aria-hidden="true"></a>
+            <a href="https://github.com/cecla" target="blank" class="fa fa-github icon" style="font-size:48px; margin-left:0.5em; margin-right:0.5em;" aria-hidden="true"></a>
+            <a href="mailto:cicci.lagerwall@gmail.com" target="_top" class="fa fa-envelope-o icon" style="font-size:48px;" aria-hidden="true"></a> 
+        </div>
+        <div class="col-md-12 small-space">
+            <p>&copy; Cecilia Lagerwall. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
